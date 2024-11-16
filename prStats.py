@@ -11,11 +11,11 @@ def getPlayerID(name):
 from nba_api.stats.endpoints import playergamelog
 from nba_api.stats.endpoints import boxscoretraditionalv3
 
-
 def getGameLog(name, season): #dataframe of player's stats in a given season
     game_log = playergamelog.PlayerGameLog(player_id=getPlayerID(name), season = str(season))
     df_gamelog = game_log.get_data_frames()
     return df_gamelog[0]
+
 def getMetricList(name, metric, season=2023): #individual stats for each player
     df = getGameLog(name, season)
     result = []
@@ -36,7 +36,8 @@ def getStatsList(player, stat):#team stats for each game player plays in
     result = []
     gameIDs = getGameID(player)
     for index in range(len(gameIDs)):
-        boxscore = boxscoretraditionalv3.BoxScoreTraditionalV3(game_id=str(gameIDs[index]))
+        id = gameIDs(index)
+        boxscore = boxscoretraditionalv3.BoxScoreTraditionalV3(game_id=str(id))
         df = boxscore.get_data_frames()[2]
         L = df.values.tolist()
         team = getTeam(player, index)
@@ -47,26 +48,13 @@ def getStatsList(player, stat):#team stats for each game player plays in
         result.append(val)
     return result
 
-# print(getMetricList('Stephen Curry', 2023))
-
-
 def getTeam(player, index):
-    teams = {'GSW': 'Warriors', 'CHI': 'Bulls', 'CLE': 'CAVALIERS', 'ATL': 'HAWKS', 'BOS': 'CELTICS', 'BKN': 'NETS', 'CHA': "HORNETS", 
-     'DAL': 'MAVERICKS', 'DEN': 'NUGGETS', 'DET': 'PISTONS', 'HOU': 'ROCKETS', 'IND': 'PACERS', 'LAC': 'PACERS', 'LAC': 'CLIPPERS', 
-     'LAL': 'LAKERS', 'MEM': 'GRIZZLIES', 'MIA':'HEAT', 'MIL': 'BUCKS', 'MIN': 'TIMBERWOLVES',
-      'NOP': 'PELICANS', 'NYK': 'KNICKS', 'OKC':'THUNDER', 'ORL': 'MAGIC', 'PHI': '76ERS', 'PHX': 'SUNS',
-      'POR': 'TRAIL BLAZERS', 'SAC': 'KINGS', 'SAS': 'SPURS', 'TOR':'RAPTORS', 'UTA':'JAZZ', 'WAS': 'WIZARDS'}
+    teams = {'GSW': 'Warriors', 'CHI': 'Bulls', 'CLE': 'Cavaliers', 'ATL': 'Hawks', 'BOS': 'Celtics', 'BKN': 'Nets', 'CHA': "Hornets", 
+     'DAL': 'Mavericks', 'DEN': 'Nuggets', 'DET': 'Pistons', 'HOU': 'Rockets', 'IND': 'Pacers', 'LAC': 'Clippers', 
+     'LAL': 'Lakers', 'MEM': 'Grizzlies', 'MIA':'Heat', 'MIL': 'Bucks', 'MIN': 'Timberwolves',
+      'NOP': 'Pelicans', 'NYK': 'Knicks', 'OKC':'Thunder', 'ORL': 'Magic', 'PHI': '76ers', 'PHX': 'Suns',
+      'POR': 'Trail Blazers', 'SAC': 'Kings', 'SAS': 'Spurs', 'TOR':'Raptors', 'UTA':'JAZZ', 'WAS': 'Wizards'}
     matchups = getMetricList(str(player), 'MATCHUP')
     teamStr = matchups[index]
     team = teamStr[:3]
     return teams[team]
-    
-# print(getStatsList('Stephen Curry', 'points'))
-boxscore = boxscoretraditionalv3.BoxScoreTraditionalV3(game_id='0022301182')
-df = boxscore.get_data_frames()
-print(df)
-# for index in df.iterrows():
-#     print(index)
-# L = df.values.tolist()
-# print(df)
-# print(L[0])
