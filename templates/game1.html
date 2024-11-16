@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Each Team's Roster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Enter Player Names for Game 1</h1>
+    </header>
+    
+    <form method="POST">
+        <!-- Display Team 1 players input -->
+        <h2>{{ team1 }} Players</h2>
+        <input type="text" name="name1" placeholder="Player 1" required><br>
+        <input type="text" name="name2" placeholder="Player 2" required><br>
+        <input type="text" name="name3" placeholder="Player 3" required><br>
+        <input type="text" name="name4" placeholder="Player 4" required><br>
+        <input type="text" name="name5" placeholder="Player 5" required><br>
+        
+        <!-- Display Team 2 players input -->
+        <h2>{{ team2 }} Players</h2>
+        <input type="text" name="name6" placeholder="Player 6" required><br>
+        <input type="text" name="name7" placeholder="Player 7" required><br>
+        <input type="text" name="name8" placeholder="Player 8" required><br>
+        <input type="text" name="name9" placeholder="Player 9" required><br>
+        <input type="text" name="name10" placeholder="Player 10" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>

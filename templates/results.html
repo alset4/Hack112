@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Game Results</h1>
+    </header>
+
+    <div class="teams">
+        <!-- Display Team 1 -->
+        <div class="team">
+            <h2>Team 1</h2>
+            <ul>
+                {% for player in team1 %}
+                    <li>{{ player }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Display Team 2 -->
+        <div class="team">
+            <h2>Team 2</h2>
+            <ul>
+                {% for player in team2 %}
+                    <li>{{ player }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Game App. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
