@@ -1,19 +1,16 @@
+import pandas as pd
 from nba_api.stats.static import players
-players = players.get_players()
-print(players)
+player_dict = players.get_players()
 
+def getPlayerID(name):
+    playerx = ([player for player in player_dict if player['full_name'] == 
+                                                                str(name)][0])
+    playerx_id = playerx['id']
+    return playerx_id
 
 from nba_api.stats.endpoints import playergamelog
-import pandas as pd 
-
-gamelog_bron = playergamelog.PlayerGameLog(player_id='2544', season = '2018')
-
-
-df_bron_games_2018 = gamelog_bron.get_data_frames()
-
 from nba_api.stats.library.parameters import SeasonAll
-
-gamelog_bron_all = playergamelog.PlayerGameLog(player_id='2544', season = SeasonAll.all)
-
-df_bron_games_all = gamelog_bron_all.get_data_frames()
-print(df_bron_games_all)
+def getGameLog(name, season):
+    game_log = playergamelog.PlayerGameLog(player_id=getPlayerID(name), season = str(season))
+    df_gamelog_season = game_log.get_data_frames()
+    return df_gamelog_season
