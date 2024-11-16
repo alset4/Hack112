@@ -23,8 +23,8 @@ header h1 {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 20px;
-    color: #39ff14; /* Neon Green */
-    text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
+    color: #ff00ff; /* Neon Green */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
 }
 
 /* Grid Container */
