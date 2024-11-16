@@ -13,4 +13,4 @@ from nba_api.stats.library.parameters import SeasonAll
 def getGameLog(name, season):
     game_log = playergamelog.PlayerGameLog(player_id=getPlayerID(name), season = str(season))
     df_gamelog_season = game_log.get_data_frames()
-    return df_gamelog_season
+    return df_gamelog_season[0]
